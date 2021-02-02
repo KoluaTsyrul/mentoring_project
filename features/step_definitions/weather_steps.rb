@@ -26,3 +26,16 @@ end
 And(/^browser sleep for "([^"]*)" seconds$/) do |seconds|
   sleep(seconds.to_i)
 end
+
+And(/^I create console error$/) do
+  page.execute_script("console.error('Test');")
+end
+
+And(/^I parse the page$/) do
+  doc = Nokogiri::HTML(URI.open('https://nokogiri.org/tutorials/installing_nokogiri.html'))
+  # doc = Nokogiri::HTML(URI.open('https://www.gismeteo.ua/ua.html'))
+
+  doc.css('h1').each do |link|
+    log link.content
+  end
+end

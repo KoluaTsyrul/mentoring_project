@@ -5,9 +5,9 @@ Feature: Use Google to find the weather website and open it
     When I type "Gismeteo" in the search field
     And I click on the first link
     Then I should see "Gismeteo"
+    And I parse the page
     And check if local town is "<location>"
     Examples:
       | location |
       | Івано-Франківськ |
       | Львів |
-
