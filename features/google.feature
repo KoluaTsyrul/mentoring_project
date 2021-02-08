@@ -1,3 +1,4 @@
+@google
 Feature: Use Google to find the weather website and open it
 
   Scenario Outline: Find and then open weather website
@@ -7,6 +8,7 @@ Feature: Use Google to find the weather website and open it
     Then I should see "Gismeteo"
     And I parse the page
     And check if local town is "<location>"
+    And I create console error
     Examples:
       | location |
       | Івано-Франківськ |

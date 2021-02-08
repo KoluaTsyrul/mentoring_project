@@ -6,6 +6,9 @@ require 'site_prism'
 require 'sentry-ruby'
 require 'nokogiri'
 require 'open-uri'
+require 'simplecov'
+
+SimpleCov.start
 
 def options
   Selenium::WebDriver::Chrome::Options.new(args: %w[widow-size=1800,1000])
