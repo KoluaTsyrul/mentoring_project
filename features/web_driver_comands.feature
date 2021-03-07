@@ -4,6 +4,7 @@
     Scenario: Test
       When Open new window
       And upload the file
+#      And close web driver
 #      And check hover effect
 #      And click on the partial text
 #      And select checkbox

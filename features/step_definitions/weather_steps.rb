@@ -3,7 +3,7 @@ Given(/^I am on the Google main page$/) do
   @home_page.load
 end
 
-When(/^I type "([^"]*)" in the search field$/) do |website|
+When(/^I type "([^"]*)" in the search field$/) do |website = "Gismeteo"|
   @home_page.search_filed.set(website).send_keys :enter
 end
 
@@ -32,12 +32,11 @@ And(/^browser sleep for "([^"]*)" seconds$/) do |seconds|
 end
 
 And(/^I create console error$/) do
-  page.execute_script("console.error('Test');")
+  page.execute_script("console.error('Test error');")
 end
 
 And(/^I parse the page$/) do
-  # doc = Nokogiri::HTML(URI.open('https://nokogiri.org/tutorials/installing_nokogiri.html'))
-  doc = Nokogiri::HTML(URI.open('https://www.gismeteo.ua/ua.html'))
+  doc = Nokogiri::HTML(URI.open('https://nokogiri.org/tutorials/installing_nokogiri.html'))
 
   doc.css('h1').each do |link|
     log link.content
@@ -45,5 +44,7 @@ And(/^I parse the page$/) do
 end
 
 And(/^I check console errors$/) do
-  page.driver.browser.manage.logs.get(:browser)
+  error = page.driver.browser.manage.logs.get(:browser)
+  log error
+  binding.pry
 end

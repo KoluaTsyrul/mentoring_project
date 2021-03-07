@@ -8,15 +8,18 @@ require 'nokogiri'
 require 'open-uri'
 require 'simplecov'
 require 'rest-client'
+require 'rubyXL'
+require 'parallel'
 
 SimpleCov.start
 
-# def options
-#   Selenium::WebDriver::Chrome::Options.new(args: %w[widow-size=1800,1000])
-# end
-# Capybara.default_driver = :selenium
-# Capybara.register_driver :selenium do |app|
-#   Capybara::Selenium::Driver.new(app, {browser: :chrome, options: options })
-# end
+Capybara.register_driver :safari do |app|
+  caps = Selenium::WebDriver::Remote::Capabilities.chrome(loggingPrefs:{browser: 'ALL'})
+  browser_options = ::Selenium::WebDriver::Chrome::Options.new()
+  # browser_options.args << '--some_option' # add whatever browser args and other options you need (--headless, etc)
+  Capybara::Selenium::Driver.new(browser: :safari)
+end
 
-# @driver = Selenium::WebDriver.for :chrome
+# chrome = Selenium::WebDriver.for :chrome
+# Selenium::WebDriver::Chrome::Service = "/Users/mtsyr/Downloads/chromedriver_mac64.zip"
+

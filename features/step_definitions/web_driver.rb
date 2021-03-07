@@ -1,13 +1,14 @@
 When(/^Open new window$/) do
-  # options = Selenium::WebDriver::Firefox::Options.new
-  # options.binary = "/path/to/firefox"
+  # @driver = Selenium::WebDriver.for :chrome
 
-  @driver = Selenium::WebDriver.for :chrome
-  @driver.get 'http://demo.guru99.com/test/upload/'
+  @driver = Selenium::WebDriver.for :safari
+
+  # @driver = Selenium::WebDriver.for :firefox
+  # Selenium::WebDriver::Firefox.driver_path = "/Users/mtsyr/Downloads/drivers"
+
   @driver.manage.window.maximize
 
-  # @browser = Watir::Browser.new :chrome
-  # @browser.goto 'http://demo.guru99.com/test/newtours/register.php'
+  @driver.get 'http://demo.guru99.com/test/upload/'
 end
 
 And(/^Close window$/) do
@@ -37,7 +38,6 @@ And(/^Click on the radio btn$/) do
 end
 
 When(/^Open FB page$/) do
-  @driver = Selenium::WebDriver.for :chrome
   @driver.get 'http://demo.guru99.com/test/facebook.html'
 end
 
@@ -63,7 +63,7 @@ And(/^select checkbox$/) do
 end
 
 And(/^I select option from dropdown$/) do
-  # @browser.select_list(css: "[name=\"country\"]").select("ANDORRA")
+  @browser.select_list(css: "[name=\"country\"]").select("ANDORRA")
 end
 
 And(/^click on the partial text$/) do
@@ -82,12 +82,15 @@ end
 
 And(/^upload the file$/) do
   path = "/Users/mtsyr/Downloads/milky-way-2695569_960_720.jpg"
-  # puts path if File.exist?(path)
 
-  element = @driver.find_element("#uploadfile_0")
-  element1 = @driver.find_element("#terms")
+  element = @driver.find_element(id: "uploadfile_0")
+  element1 = @driver.find_element(id: "terms")
   element2 = @driver.find_element(css: "[name=send]")
   element.send_keys path
   element1.click
   element2.click
+end
+
+And(/^close web driver$/) do
+  @driver.quit
 end
