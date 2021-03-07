@@ -5,7 +5,7 @@ Feature: Use Google to find the weather site and open it
     Given I am on the Google main page
     And I check console errors
     And I debug
-    When I type "Gismeteo" in the search field
+    When I type "Test" in the search field
     And I click on the first link
     Then I should see "Gismeteo"
     And I parse the page
