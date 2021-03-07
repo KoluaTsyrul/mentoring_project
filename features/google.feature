@@ -1,5 +1,5 @@
 @google
-Feature: Use Google to find the weather website and open it
+Feature: Use Google to find the weather site and open it
 
   Scenario Outline: Find and then open weather website
     Given I am on the Google main page
