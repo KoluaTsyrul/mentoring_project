@@ -3,9 +3,6 @@ When(/^Open new window$/) do
 
   @driver = Selenium::WebDriver.for :safari
 
-  # @driver = Selenium::WebDriver.for :firefox
-  # Selenium::WebDriver::Firefox.driver_path = "/Users/mtsyr/Downloads/drivers"
-
   @driver.manage.window.maximize
 
   @driver.get 'http://demo.guru99.com/test/upload/'

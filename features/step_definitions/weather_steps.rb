@@ -1,14 +1,16 @@
 Given(/^I am on the Google main page$/) do
+  # driver = Selenium::WebDriver.for :firefox
+  # driver.navigate.to 'https://www.google.com.ua/'
   @home_page = WeatherPage.new
   @home_page.load
 end
 
-When(/^I type "([^"]*)" in the search field$/) do |website = "Gismeteo"|
+When(/^I type "([^"]*)" in the search field$/) do |website|
   @home_page.search_filed.set(website).send_keys :enter
 end
 
 And(/^I click on the first link$/) do
-  find('span', text: 'GISMETEO: Погода в Україні, прогноз погоди на сьогодні ...').click
+  find('h3', text: 'GISMETEO: Погода в Україні, прогноз погоди на сьогодні ...').click
 end
 
 Then(/^I should see "([^"]*)"$/) do |website|
@@ -45,6 +47,6 @@ end
 
 And(/^I check console errors$/) do
   error = page.driver.browser.manage.logs.get(:browser)
-  log error
   binding.pry
+  log error
 end
