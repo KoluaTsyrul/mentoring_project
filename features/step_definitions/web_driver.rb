@@ -1,7 +1,7 @@
-When(/^Open new window$/) do
-  # @driver = Selenium::WebDriver.for :chrome
+When(/^Open new window $/) do
+  @driver = Selenium::WebDriver.for :chrome
 
-  @driver = Selenium::WebDriver.for :safari
+  # @driver = Selenium::WebDriver.for :safari
 
   @driver.manage.window.maximize
 

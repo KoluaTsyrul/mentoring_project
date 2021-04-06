@@ -4,7 +4,7 @@
     Scenario: Test
       When Open new window
       And upload the file
-#      And close web driver
+      And close web driver
 #      And check hover effect
 #      And click on the partial text
 #      And select checkbox
@@ -15,7 +15,7 @@
 #      And I get alert text
 #      And I work with alert
 #      And Close window
-      And I debug
+#      And I debug
 
 #      Scenario: Facebook page
 #        When Open FB page
