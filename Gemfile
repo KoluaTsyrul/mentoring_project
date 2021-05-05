@@ -12,3 +12,4 @@ gem 'simplecov'
 gem 'rest-client'
 gem 'rubyXL'
 gem 'parallel'
+gem 'capybara-screenshot', :group => :test

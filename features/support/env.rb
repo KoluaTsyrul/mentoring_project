@@ -10,6 +10,13 @@ require 'simplecov'
 require 'rest-client'
 require 'rubyXL'
 require 'parallel'
+require 'capybara-screenshot/cucumber'
+
+Capybara::Screenshot.autosave_on_failure = true
+
+Capybara.save_path = "screenshot"
+
+Capybara::Screenshot.prune_strategy = :keep_last_run
 
 SimpleCov.start
 
@@ -37,7 +44,7 @@ Selenium::WebDriver::Service::SOCKET_LOCK_TIMEOUT = 120
 Capybara.default_selector = :css
 Capybara.run_server = false
 
-if ['firefox', 'chrome', 'headless', 'safari', 'edge'].include?(browser)
+if ['firefox', 'chrome', 'headless', 'safari'].include?(browser)
   Capybara.register_driver :selenium do |app|
     case browser
     when 'firefox'
@@ -71,20 +78,9 @@ if ['firefox', 'chrome', 'headless', 'safari', 'edge'].include?(browser)
       client.read_timeout = 120
       chromedriver_path = `#{chromedriver_cmd}`.chomp
       Selenium::WebDriver::Chrome.driver_path = "#{chromedriver_path}"
-    when 'edge'
-      edgedriver_path = `#{edgedriver_cmd}`.chomp
-      Selenium::WebDriver::Edge::Service.driver_path = "#{edgedriver_path}"
-      profile = Selenium::WebDriver::Chrome::Profile.new
-      caps = Selenium::WebDriver::Remote::Capabilities.chrome(
-          loggingPrefs: {browser: 'ALL'},
-      )
-      opts = { browser: :edge, desired_capabilities: caps }
-      # profile = Selenium::WebDriver::Edge::Profile.new
-      client = Selenium::WebDriver::Remote::Http::Default.new
-      client.read_timeout = 120
     when 'safari'
-      profile = Selenium::WebDriver::Chrome::Profile.new
-      caps = Selenium::WebDriver::Remote::Capabilities.chrome(
+      profile = Selenium::WebDriver.for :safari
+      caps = Selenium::WebDriver::Remote::Capabilities.safari(
           loggingPrefs: {browser: 'ALL'},
       )
       opts = { browser: :safari, desired_capabilities: caps }

@@ -19,8 +19,9 @@ Feature: Use Google to find the weather site and open it
     And I click on the link with text "GISMETEO: Погода в Україні, прогноз погоди на сьогодні ..."
     Then I should see "Gismeteo" and check url "https://www.gismeteo.ua/ua/"
     And I parse the page
-    And check if local town is "<location>"
-    Examples:
-      | location |
-      | Івано-Франківськ |
-      | Львів |
+    And check if local town is "Івано-Франківськ1"
+#    And check if local town is "<location>"
+#    Examples:
+#      | location |
+#      | Івано-Франківськ |
+#      | Львів |

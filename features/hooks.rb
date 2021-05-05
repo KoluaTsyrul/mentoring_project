@@ -1,6 +1,11 @@
+def create_folder
+  Dir.mkdir 'screenshot' unless Dir.exist? 'screenshot'
+end
+
 Before do
   log 'New Test'
   @start_at = Time.now
+  create_folder
 end
 
 After do
